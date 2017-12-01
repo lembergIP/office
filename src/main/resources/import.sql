@@ -1,0 +1,2 @@
+INSERT INTO users (id_user, date_of_birth, email, first_name, last_name, password, role) VALUES ('1', '1967-08-09', 'admin@mail.com', 'Admin', 'admin', '$2a$10$aZF8HwpCPVQsoSf8UfbPLOpG6ZClhFVqME6VncstwweV3kvpPBOEi', 'ADMINISTRATOR');
+INSERT INTO users (id_user, date_of_birth, email, first_name, last_name, password, role) VALUES ('2', '1978-06-13', 'manager@mail.com', 'MANAGER', 'manager', '$2a$10$ciCID9YTfrl9P.0cdiS3mOX9H11oXKRSjCdLdsF0Hl1Zt.ggQJcM6', 'MANAGER');
