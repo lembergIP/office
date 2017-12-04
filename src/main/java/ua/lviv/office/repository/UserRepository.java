@@ -16,6 +16,7 @@ import java.util.Set;
 public interface UserRepository extends JpaRepository<User,Long>{
     User findByEmail(String email);
     List<User> findByRole(Role role);
+    List<User> findByIsRoleConfirmedFalse();
     User findByLastName(String lastName);
     @Query("SELECT u.events FROM "+ UserConstants.Entity.TABLE_NAME_USER+" u WHERE u.id = :id")
     Set<Event> getEventsByUserId(@Param("id") long id);

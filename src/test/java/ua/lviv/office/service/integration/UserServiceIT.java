@@ -45,6 +45,7 @@ public class UserServiceIT {
         user.setPassword("123456");
         user.setFirstName("Ivan");
         user.setLastName("Test");
+
         userService.saveUser(user);
 
         Event event=new Event();
@@ -80,6 +81,5 @@ public class UserServiceIT {
         User user=userService.findUserByEmail("test@mail.com");
         userService.deleteUser(user.getId());
         Assert.assertEquals(0,userService.findAllUsers().size());
-       // Assert.assertEquals(1,eventService.allEvents().size());
     }
 }

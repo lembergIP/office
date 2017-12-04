@@ -9,12 +9,12 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import ua.lviv.office.categories.UnitTest;
 import ua.lviv.office.config.TestBaseConfigClass;
+import ua.lviv.office.entity.Role;
 import ua.lviv.office.entity.User;
 import ua.lviv.office.service.UserService;
 
@@ -27,9 +27,6 @@ public class UserServiceImplsTest {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Before
     public void init(){
         User user=new User();
@@ -37,6 +34,8 @@ public class UserServiceImplsTest {
         user.setPassword("123456");
         user.setFirstName("Ivan");
         user.setLastName("Test");
+        user.setRole(Role.ADMINISTRATOR);
+        user.setRoleConfirmed(false);
         userService.saveUser(user);
     }
     @After
@@ -69,4 +68,18 @@ public class UserServiceImplsTest {
         String new_password="qwerty123456";
         Assert.assertEquals(true,  userService.updateUserPassword("test@mail.com",correct_password,new_password));
 }
+    @Test
+    public void testFindUsersByRole(){
+        Assert.assertEquals(1,userService.findUsersByRole(Role.ADMINISTRATOR).size());
+    }
+    @Test
+    public void testUsersNonConfirmedRole(){
+        Assert.assertEquals(1,userService.usersNonConfirmedRole().size());
+    }
+    @Test
+    public void testChangeUserRole(){
+        User user=userService.findUserByEmail("test@mail.com");
+        userService.changeUserRole(user.getId(),Role.MANAGER);
+        Assert.assertEquals(Role.MANAGER,userService.findUserByEmail("test@mail.com").getRole());
+    }
 }

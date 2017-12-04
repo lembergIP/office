@@ -1,10 +1,12 @@
 package ua.lviv.office.service;
 
 
+import ua.lviv.office.entity.Role;
 import ua.lviv.office.entity.User;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
     void saveUser(User user);
@@ -17,4 +19,7 @@ public interface UserService {
     User findUserByLastName(String lastName);
     void updateUserPhoto(String email, byte[] photo);
     void deleteAllUsers();
+    Set<User> findUsersByRole(Role role);
+    Set<User> usersNonConfirmedRole();
+    void changeUserRole(long id_user,Role new_role);
 }
