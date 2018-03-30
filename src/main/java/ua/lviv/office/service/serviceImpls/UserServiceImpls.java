@@ -25,6 +25,7 @@ public class UserServiceImpls implements UserService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     final static Logger logger = Logger.getLogger(LoginController.class);
 
     @Transactional
@@ -50,13 +51,13 @@ public class UserServiceImpls implements UserService{
     }
     @Transactional
     public List<User> findAllUsers(){
-        List<User>users=userRepository.findAll(sortByIdEmail());
+        List<User>users=userRepository.findAll(sortByLastName());
         if(users!=null) {
             return users;
         }
         return new ArrayList<>();
     }
-    private Sort sortByIdEmail() {
+    private Sort sortByLastName() {
 
         return new Sort(Sort.Direction.ASC, "lastName");
     }
@@ -120,10 +121,10 @@ public class UserServiceImpls implements UserService{
     }
 
     @Transactional
-    public void updateUserPhoto(String email, byte[] photo) {
-        User findUser=userRepository.findByEmail(email);
-        findUser.setImage(photo);
-        userRepository.saveAndFlush(findUser);
+    public void updateUserPhoto(long id_user,byte[] image) {
+        User user=findUserById(id_user);
+        user.setImage(image);
+        userRepository.saveAndFlush(user);
     }
 
     @Transactional
@@ -156,9 +157,22 @@ public class UserServiceImpls implements UserService{
      User user=findUserById(id_user);
      if(user!=null){
          user.setRole(new_role);
+         user.setRoleConfirmed(false);
          userRepository.saveAndFlush(user);
      }
      else
          logger.info("user role does not change because user not found");
     }
+    @Transactional
+    public void confirmUserRoleTrue(long id_user){
+        User user=findUserById(id_user);
+        if(user!=null){
+            user.setRoleConfirmed(true);
+            userRepository.saveAndFlush(user);
+        }
+        else
+            logger.info("user role does not confirm because user not found");
+    }
+
+
 }

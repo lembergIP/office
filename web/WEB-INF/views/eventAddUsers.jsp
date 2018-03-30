@@ -29,7 +29,7 @@
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3 templatemo-content-wrapper">
         <div class="templatemo-content">
             <section id="home-text" class="active templatemo-content-section">
-                <form action="mng-addUsersInEvent${eventID}" method="post" name="addUsersInEvent">
+                <form action="mngs-addUsersInEvent${eventID}" method="post" name="addUsersInEvent">
                 <table id="users-table" class="table table-bordered table-striped tablesorter">
                     <thead>
                     <tr>
@@ -55,7 +55,7 @@
                     </tbody>
                 </table>
                     <div style="margin-left: 20%">
-                    <a href="updateEvent${eventID}">  <button type="button" class="btn btn-primary">Update Event Info</button></a>
+                    <a href="mngs-updateEvent${eventID}">  <button type="button" class="btn btn-primary">Update Event Info</button></a>
                     <input type="submit" id="subBtn" value="Add Users In Event"  class="btn btn-danger" style="margin-left: 10%;margin-right: 10%" disabled>
                         <a href="usersInEvent${eventID}">  <button type="button" class="btn btn-success">Users in Event</button></a>
                     </div>

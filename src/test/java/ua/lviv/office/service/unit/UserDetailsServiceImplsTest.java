@@ -17,6 +17,7 @@ import ua.lviv.office.entity.Role;
 import ua.lviv.office.entity.User;
 import ua.lviv.office.service.UserService;
 import ua.lviv.office.service.serviceImpls.UserDetailsServiceImpls;
+import ua.lviv.office.util.ImagesHolderUtil;
 
 @Category(UnitTest.class)
 @ContextConfiguration(classes = TestBaseConfigClass.class)
@@ -45,6 +46,7 @@ public class UserDetailsServiceImplsTest {
     @Test
     public void testLoadUserByUsername(){
         User user=userService.findUserByEmail("some@email.com");
+       /* userService.updateUserPhoto(user.getId(),ImagesHolderUtil.getDefaultPictureUser());*/
         Assert.assertEquals(user.getEmail(),userDetailsService.loadUserByUsername("some@email.com").getUsername());
     }
     @Test(expected = UsernameNotFoundException.class)

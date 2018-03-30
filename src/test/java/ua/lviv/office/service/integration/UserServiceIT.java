@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import sun.invoke.empty.Empty;
 import ua.lviv.office.categories.IntegrationTest;
 import ua.lviv.office.config.TestBaseConfigClass;
 import ua.lviv.office.entity.Event;
@@ -17,6 +18,7 @@ import ua.lviv.office.entity.Type;
 import ua.lviv.office.entity.User;
 import ua.lviv.office.service.EventService;
 import ua.lviv.office.service.UserService;
+import ua.lviv.office.util.ImagesHolderUtil;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -81,5 +83,11 @@ public class UserServiceIT {
         User user=userService.findUserByEmail("test@mail.com");
         userService.deleteUser(user.getId());
         Assert.assertEquals(0,userService.findAllUsers().size());
+    }
+    @Test
+    public void testUpdateUserPhoto(){
+        User user=userService.findUserByEmail("test@mail.com");
+        userService.updateUserPhoto(user.getId(),ImagesHolderUtil.getDefaultPictureUser());
+        Assert.assertEquals(ImagesHolderUtil.getDefaultPictureUser().length,userService.findUserByEmail("test@mail.com").getImage().length );
     }
 }

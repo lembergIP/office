@@ -24,4 +24,6 @@ public interface EventService {
     Set<Event> findIsConfirmedEvents(boolean isConfirmed);
     void toConfirmEvent(long id);
     void deleteAllEvents();
+    Set<Event> findAllEventsIsConfirmedByMonth(boolean is_confirmed);
+    Set<Event> findNotConfirmedCoffeeBreakByWeek();
 }

@@ -1,8 +1,4 @@
-package ua.lviv.office.controller;
-
-
-
-
+package ua.lviv.office.controller.employer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import ua.lviv.office.controller.LoginController;
 import ua.lviv.office.entity.Type;
 import ua.lviv.office.entity.User;
 import ua.lviv.office.service.UserService;

@@ -42,9 +42,6 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @Column(name = EventConstants.Entity.IS_PERSONAL)
-    private boolean isPersonal;
-
     @Column(name = EventConstants.Entity.DIRECTION)
     private Long direction;
 
@@ -117,11 +114,5 @@ public class Event {
         isConfirmed = confirmed;
     }
 
-    public boolean isPersonal() {
-        return isPersonal;
-    }
 
-    public void setPersonal(boolean personal) {
-        isPersonal = personal;
-    }
 }

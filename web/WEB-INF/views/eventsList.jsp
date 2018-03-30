@@ -42,7 +42,7 @@
                         </form>
                     </div>
                     <c:if test="${not empty flag}">
-                        <a href="notConfirmedEventsList" style="margin-right: 10%;float: right;margin-top: 1%"> <input type="button" value="SEE NOT CONFIRMED LIST"></a>
+                        <a href="mngs-notConfirmedEvents" style="margin-right: 10%;float: right;margin-top: 1%"> <input type="button" value="SEE NOT CONFIRMED LIST"></a>
                     </c:if>
                     <table id="users-table" class="table table-bordered table-striped tablesorter">
                         <thead>
@@ -69,11 +69,11 @@
                                 <td><c:if test="${not empty flag}">${event.isConfirmed()}
                                     </c:if>
                                     <c:if test="${empty flag}">
-                                    <a href="/confirmEvent${event.id}"><button type="button">Confirm</button></a>
+                                    <a href="/mngOf-confirmEvent${event.id}"><button type="button">Confirm</button></a>
                                     </c:if>
                                 </td>
                             <td><a href="usersInEvent${event.id}"><button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></a></td>
-                            <td><a href="/updateEvent${event.id}">
+                            <td><a href="/mngs-updateEvent${event.id}">
                                 <span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>
                             </a></td>
                             <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteEvent${event.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
@@ -86,7 +86,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                                                <a href="deleteEvent${event.id}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                                <a href="mngs-deleteEvent${event.id}"><button type="button" class="btn btn-danger">Delete</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +96,7 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                    <a href="/mng-createEvent" style="float: right;margin-right: 5%">  <button type="button" class="btn btn-primary">Add Event</button></a>
+                    <a href="/mngs-createEvent" style="float: right;margin-right: 5%">  <button type="button" class="btn btn-primary">Create Event</button></a>
                 </section>
                 <ul class="pagination pagination-lg">
                     <li><a href="#">1</a></li>

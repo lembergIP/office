@@ -5,13 +5,12 @@ import org.hibernate.annotations.GenericGenerator;
 import ua.lviv.office.constans.UserConstants;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.*;
 
 
 @Entity(name = UserConstants.Entity.TABLE_NAME_USER)
-public class User {
+public class User{
     
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
@@ -35,7 +34,7 @@ public class User {
     @Column(name = UserConstants.Entity.DATE_OF_BIRTH)
     private Date dateBirth;
 
-    @Column(length = 10,name = UserConstants.Entity.PHONE)
+    @Column(name = UserConstants.Entity.PHONE)
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
@@ -57,7 +56,6 @@ public class User {
                     CascadeType.PERSIST
             })
     @JoinTable(name = "User_has_Event",  inverseJoinColumns = { @JoinColumn(name = "event_Id", nullable = false, updatable = false) }, joinColumns = { @JoinColumn(name = "user_Id", nullable = false, updatable = false) })
-
     private Set<Event> events=new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -161,4 +159,25 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(dateBirth, user.dateBirth) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                role == user.role &&
+                Arrays.equals(image, user.image) &&
+                Objects.equals(isRoleConfirmed, user.isRoleConfirmed);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, password, firstName, lastName, dateBirth, phoneNumber, role, image, isRoleConfirmed);
+    }
 }

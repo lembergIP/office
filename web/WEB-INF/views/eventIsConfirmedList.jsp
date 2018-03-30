@@ -49,7 +49,7 @@
                                 <td>${event.description}</td>
                                 <td>${event.isConfirmed()}</td>
                                 <td><a href="usersInEvent${event.id}"><button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></a></td>
-                                <td><a href="/updateEvent${event.id}">
+                                <td><a href="/mngs-updateEvent${event.id}">
                                     <span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>
                                 </a></td>
                                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteEvent${event.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                                                <a href="deleteEvent${event.id}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                                <a href="mngs-deleteEvent${event.id}"><button type="button" class="btn btn-danger">Delete</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                    <a href="/mng-createEvent">  <button type="button" class="btn btn-primary">Add Event</button></a>
+                    <a href="/mngs-createEvent">  <button type="button" class="btn btn-primary">Add Event</button></a>
                     <div style="border: 5px solid black">
                         <form action="/eventsFindBetweenDates" method="post">
                             <p>From: <input type="datetime-local" name="start" required="required"></p>

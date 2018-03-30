@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.lviv.office.entity.Event;
+import ua.lviv.office.entity.Type;
 import ua.lviv.office.entity.User;
 import ua.lviv.office.repository.EventRepository;
 import ua.lviv.office.repository.UserRepository;
@@ -14,10 +15,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Service(value = "eventService")
@@ -33,7 +31,7 @@ public class EventServiceImpls implements EventService {
     private EventService eventService;
 
 
-
+    @Transactional
     public void createEvent(Event event)
     {
        eventRepository.saveAndFlush(event);
@@ -144,7 +142,7 @@ Set<Event>events=eventRepository.findByTimeFromBetween(LocalDateTime.of(startDat
         eventRepository.saveAndFlush(event);
     }
 
-    @Override
+    @Transactional
     public void deleteAllEvents() {
         eventRepository.deleteAll();
     }
@@ -152,5 +150,23 @@ Set<Event>events=eventRepository.findByTimeFromBetween(LocalDateTime.of(startDat
     private Sort sortByUserId() {
 
         return new Sort(Sort.Direction.ASC, "id");
+    }
+    @Transactional
+    public Set<Event> findAllEventsIsConfirmedByMonth(boolean is_confirmed){
+        Set<Event> events=new HashSet<>();
+        LocalTime startLocalTime = LocalTime.of(0, 0);
+        LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), startLocalTime);
+        LocalDateTime endDateTime = LocalDateTime.of(LocalDate.now().plusDays(30), LocalTime.of(23, 59));
+        events.addAll(eventRepository.findByIsConfirmedAndTimeFromBetween(is_confirmed,startDateTime,endDateTime));
+        return events;
+    }
+    @Transactional
+    public Set<Event> findNotConfirmedCoffeeBreakByWeek(){
+        Set<Event> events=new HashSet<>();
+        LocalTime startLocalTime = LocalTime.of(0, 0);
+        LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), startLocalTime);
+        LocalDateTime endDateTime = LocalDateTime.of(LocalDate.now().plusDays(7), LocalTime.of(23, 59));
+        events.addAll(eventRepository.findByIsConfirmedAndTypeAndTimeFromBetween(false, Type.COFFEE_BREAK,startDateTime,endDateTime));
+        return events;
     }
 }

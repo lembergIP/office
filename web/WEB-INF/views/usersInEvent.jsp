@@ -31,13 +31,13 @@
                         <td><a href="/findUserById${user.id}"><p>${user.lastName} ${user.firstName}</p></a></td>
                         <td>${user.email}</td>
                         <td>${user.role}</td>
-                        <td><a href="/mng-deleteUser${user.id}FromEvent${eventID}"><button type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
+                        <td><a href="/mngs-deleteUser${user.id}FromEvent${eventID}"><button type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
                         </c:forEach>
                     </tbody>
                 </table>
-                <a href="mng-addUsersInEvent${eventID}" style="margin-left: 10%;margin-right: 10%">
+                <a href="mngs-addUsersInEvent${eventID}" style="margin-left: 10%;margin-right: 10%">
                     <button type="button" class="btn btn-primary">Add More Users To Event</button></a>
-                <a href="updateEvent${eventID}">  <button type="button" class="btn btn-warning">Update Event Info</button></a>
+                <a href="mngs-updateEvent${eventID}">  <button type="button" class="btn btn-warning">Update Event Info</button></a>
             </section>
             <ul class="pagination pagination-lg">
                 <li><a href="#">1</a></li>

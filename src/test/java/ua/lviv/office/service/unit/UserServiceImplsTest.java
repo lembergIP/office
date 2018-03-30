@@ -76,6 +76,13 @@ public class UserServiceImplsTest {
     public void testUsersNonConfirmedRole(){
         Assert.assertEquals(1,userService.usersNonConfirmedRole().size());
     }
+
+    @Test
+    public void testConfirmUserRoleTrue(){
+        User user=userService.findUserByEmail("test@mail.com");
+        userService.confirmUserRoleTrue(user.getId());
+        Assert.assertEquals(true, userService.findUserById(user.getId()).getRoleConfirmed());
+    }
     @Test
     public void testChangeUserRole(){
         User user=userService.findUserByEmail("test@mail.com");

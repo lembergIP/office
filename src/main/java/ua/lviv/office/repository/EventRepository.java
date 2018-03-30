@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ua.lviv.office.constans.EventConstants;
 import ua.lviv.office.entity.Event;
+import ua.lviv.office.entity.Type;
 import ua.lviv.office.entity.User;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     Set<User> getUsersByEventId(@Param("id") long id_event);
     Set<Event> findByTimeFromBetween(LocalDateTime start, LocalDateTime finish);
     Set<Event> findByIsConfirmedAndTimeFromBetween(boolean isConfirmed, LocalDateTime start, LocalDateTime finish);
+    Set<Event> findByIsConfirmedAndTypeAndTimeFromBetween(boolean isConfirmed, Type type, LocalDateTime start, LocalDateTime finish);
     Set<Event> findByIsConfirmed(boolean isConfirmed);
     @Query("SELECT e FROM "+ EventConstants.Entity.TABLE_NAME_EVENT+" e INNER JOIN e.users u WHERE u.id = ?3 " +
             "and e.timeFrom between ?1 and ?2 order by e.timeFrom")

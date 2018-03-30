@@ -86,5 +86,13 @@
 
 </div><!-- /#main-wrapper -->
 </body>
+<script src="resources/js/validatePhoneDate.js"></script>
+<script src="resources/js/jquery-3.1.1.js" type="text/javascript"></script>
+<script src="resources/js/maskedinput.js" type="text/javascript"></script>
+<script>
+    jQuery(function($){
+        $("#phoneNumber").mask("(999)999-99-99");
+    });
+</script>
 </html>
 

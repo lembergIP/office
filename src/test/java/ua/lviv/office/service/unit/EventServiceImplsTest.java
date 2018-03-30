@@ -35,13 +35,11 @@ public class EventServiceImplsTest {
     @Before
     public void init(){
         Event event=new Event();
-        LocalDate startDate= new Date(2022,12,12).toLocalDate();
-        LocalDate finishDate=new Date(2022,12,12).toLocalDate();
-        LocalTime startTime=LocalTime.of(10,00);
-        LocalTime finishTime=LocalTime.of(18,00);
-        event.setTimeFrom(LocalDateTime.of(startDate,startTime));
-        event.setTimeEnd(LocalDateTime.of(finishDate,finishTime));
-        event.setType(Type.WORK);
+        LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now().plusDays(2), LocalTime.of(12,15));
+        LocalDateTime endDateTime = LocalDateTime.of(LocalDate.now().plusDays(2), LocalTime.of(13,00));
+        event.setTimeFrom(startDateTime);
+        event.setTimeEnd(endDateTime);
+        event.setType(Type.COFFEE_BREAK);
         event.setConfirmed(false);
         eventService.createEvent(event);
 
@@ -59,12 +57,10 @@ public class EventServiceImplsTest {
     @Test
     public void testCreateEvent(){
         Event event2=new Event();
-        LocalDate startDate= new Date(2021,12,12).toLocalDate();
-        LocalDate finishDate=new Date(2021,12,12).toLocalDate();
-        LocalTime startTime=LocalTime.of(12,15);
-        LocalTime finishTime=LocalTime.of(13,00);
-        event2.setTimeFrom(LocalDateTime.of(startDate,startTime));
-        event2.setTimeEnd(LocalDateTime.of(finishDate,finishTime));
+        LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now().plusDays(20), LocalTime.of(12,15));
+        LocalDateTime endDateTime = LocalDateTime.of(LocalDate.now().plusDays(20), LocalTime.of(13,00));
+        event2.setTimeFrom(startDateTime);
+        event2.setTimeEnd(endDateTime);
         event2.setType(Type.MEETING);
         eventService.createEvent(event2);
 
@@ -79,7 +75,7 @@ public class EventServiceImplsTest {
     @Test
     public void testFindEventsBetweenDates(){
 
-        Assert.assertEquals(1,eventService.findEventsBetweenDates(new Date(2022,12,10),new Date(2022,12,20)).size());
+        Assert.assertEquals(1,eventService.findEventsBetweenDates(Date.valueOf(LocalDate.now().plusDays(1)),Date.valueOf(LocalDate.now().plusDays(25))).size());
     }
     @Test
     public void testFindIsConfirmedEvents(){
@@ -91,5 +87,21 @@ public class EventServiceImplsTest {
         Long id= events.get(0).getId();
         eventService.toConfirmEvent(id);
         Assert.assertEquals(1,eventService.findIsConfirmedEvents(true).size());
+    }
+    @Test
+    public void testAllEventsIsConfirmedByMonthTrue(){
+        List<Event>events=eventService.allEvents();
+        Long id= events.get(0).getId();
+        eventService.toConfirmEvent(id);
+        Assert.assertEquals(1,eventService.findAllEventsIsConfirmedByMonth(true).size());
+    }
+    @Test
+    public void testAllEventsIsConfirmedByMonthFalse(){
+
+        Assert.assertEquals(1,eventService.findAllEventsIsConfirmedByMonth(false).size());
+    }
+    @Test
+    public void testFindNotConfirmedCoffeeBreakByWeek(){
+        Assert.assertEquals(1,eventService.findNotConfirmedCoffeeBreakByWeek().size());
     }
 }

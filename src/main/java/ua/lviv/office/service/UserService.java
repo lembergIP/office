@@ -17,9 +17,11 @@ public interface UserService {
     void deleteUser(long id);
     User findUserById(long id);
     User findUserByLastName(String lastName);
-    void updateUserPhoto(String email, byte[] photo);
+    void updateUserPhoto(long id_user,byte[] image);
     void deleteAllUsers();
     Set<User> findUsersByRole(Role role);
     Set<User> usersNonConfirmedRole();
     void changeUserRole(long id_user,Role new_role);
+    void confirmUserRoleTrue(long id_user);
+
 }

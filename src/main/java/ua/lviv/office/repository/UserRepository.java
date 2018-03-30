@@ -21,4 +21,5 @@ public interface UserRepository extends JpaRepository<User,Long>{
     @Query("SELECT u.events FROM "+ UserConstants.Entity.TABLE_NAME_USER+" u WHERE u.id = :id")
     Set<Event> getEventsByUserId(@Param("id") long id);
 
+
 }

@@ -76,7 +76,7 @@ public class EventServiceIT {
         LocalTime finishTime = LocalTime.of(13, 00);
         event.setTimeFrom(LocalDateTime.of(startDate,startTime));
         event.setTimeEnd(LocalDateTime.of(finishDate,finishTime));
-        event.setType(Type.COFFE_BREAK);
+        event.setType(Type.COFFEE_BREAK);
         eventService.updateEvent(event);
 
         Assert.assertEquals(LocalDateTime.of(startDate,startTime),eventService.findEvenById(event.getId()).getTimeFrom());

@@ -18,7 +18,7 @@
 
                 <section id="home-text" class="active templatemo-content-section">
                     <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 10%;padding-top: 5%">
-                        <form action="/updateEvent${event.id}" method="post">
+                        <form action="/mngs-updateEvent${event.id}" method="post">
                             <div style="float: left;margin-right: 10%" ><p>Time start: </p><input type="datetime-local" name="startTime" required="required" value="${event.timeFrom}"></div>
                             <div style="float: left;margin-right: 10%" > <p>Time end: </p><input type="datetime-local" name="endTime" required="required" value="${event.timeEnd}"></div>
 

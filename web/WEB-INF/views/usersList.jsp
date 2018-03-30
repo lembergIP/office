@@ -15,7 +15,8 @@
 
     <!-- Google Web Font Embed -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,300,700' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
+    <script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
     <link rel="stylesheet" href="resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="resources/css/templatemo_main.css">
     <script type="text/javascript" src="resources/js/jquery.tablesorter.js"></script>
@@ -97,4 +98,15 @@
 </div>
 
 </body>
+<script type="text/javascript" src="resources/js/sortUsers.js"></script>
+<script>$(document).ready(function()
+    {
+        $("#users-table").tablesorter();
+    }
+);
+$(document).ready(function()
+    {
+        $("#users-table").tablesorter( {sortList: [[0,0], [1,0]]} );
+    }
+);</script>
 </html>

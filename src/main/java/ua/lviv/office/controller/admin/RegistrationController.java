@@ -1,5 +1,6 @@
 package ua.lviv.office.controller.admin;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import ua.lviv.office.controller.LoginController;
 import ua.lviv.office.entity.Role;
 import ua.lviv.office.entity.User;
 import ua.lviv.office.service.UserService;
@@ -17,6 +19,8 @@ import java.sql.Date;
 @RequestMapping("/adm-registration")
 @SessionAttributes("roleList")
 public class RegistrationController {
+
+    final static Logger logger = Logger.getLogger(RegistrationController.class);
 
     @Autowired
     private UserService userService;
